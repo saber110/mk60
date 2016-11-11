@@ -962,7 +962,39 @@ void Menu_Change_Data(float* num)    //设定坐标，更改数据
     if(sign==1)
     {
         Display_Page2(num);
-    }
-    
+    }  
     
  }
+
+void OLED_WRDATA_Yinyang(uint8 dat,uint8 type)   // 实现正反码写入一字节数据
+{
+    uint8 i=0;
+    if(type == 1)
+    {
+        dat = ~dat;
+    }
+    gpio_set(OLED_DC,1);
+    for(i=0;i<8;i++)
+  {
+        gpio_set(OLED_SCL,0);
+         if(dat&0x80) gpio_set(OLED_SDA,1);
+         else         gpio_set(OLED_SDA,0);
+        gpio_set(OLED_SCL,1);  
+        dat<<=1;  
+  }
+}  
+  void OLED_Yinyangma_6x8 (uint8 x,uint8 y,uint8 type,uint8 ch[])//6*8阴阳码输出,tye=1亮字，type=0亮底
+{  
+   uint8 c=0,i=0,j=0;        
+   while (ch[j]!='\0')  
+   {      
+     c =ch[j]-32;  
+     if(x>126)  
+        {x=0;y++;}  
+     OLED_Setxy(x,y);      
+     for(i=0;i<6;i++)       
+       OLED_WRDATA_Yinyang(F6x8[c][i],type);    
+     x+=6;  
+     j++;  
+   }  
+}

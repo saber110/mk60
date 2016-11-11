@@ -650,3 +650,55 @@ void UART_DrawLine_Arb(char* buff,char* str,uint8 len)
   DELAY_MS(10);
   }
 }
+
+
+
+/*!
+ *  @brief      服务器初始化
+*/
+void Wifi_ServerInit(void) 
+{
+  printf("AT+CIPMUX=1");
+  uart_putchar(UART4,0x0d); 
+  uart_putchar(UART4,0x0a); 
+  DELAY_MS(10);
+  printf("AT+CIPSERVER=1,8080");
+  uart_putchar(UART4,0x0d);
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10);
+  printf("AT+CIPSTO=7200"); //设置服务超时时间为7200s
+  uart_putchar(UART4,0x0d);
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10);
+}
+
+/*!
+ *  @brief      客户端初始化
+*/
+void Wifi_ClientInit(void)
+{
+  printf("AT+CIPMUX=1");
+  uart_putchar(UART4,0x0d); 
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10);  
+  printf("AT+CIPSTART=0,\"TCP\",\"192.168.4.1\",8080");
+  uart_putchar(UART4,0x0d);
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10);  
+}
+
+
+/*!
+ *  @brief      发送len长度的数据
+ *  @param      Id        连接的id号
+ *  @param      Len       发送数据的长度
+ *  @param      str       字符串地址_发送数据
+*/
+void Wifi_Send_Data(uint8 Id,uint8 Len,uint8 *str) 
+{
+  printf("AT+CIPSEND=%d,%d",Id,Len);
+  uart_putchar(UART4,0x0d);
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(1);
+  uart_putstr(UART4,str);   //数据达到len长度才可发送
+}
