@@ -47,4 +47,6 @@ void Display_Page1(float *num);     //显示第一页
 void Display_Page2(float *num);     //显示第二页
 void Menu_Change_Data(float *num);  //设定坐标，更改数据
 float Set_jinzhi(float num);  //更改进制
+void OLED_WRDATA_Yinyang(uint8 dat,uint8 type);// 实现正反码写入一字节数据
+void OLED_Yinyangma_6x8 (uint8 x,uint8 y,uint8 type,uint8 ch[]);//6*8阴阳码输出,tye=1亮字，type=0亮底
 #endif

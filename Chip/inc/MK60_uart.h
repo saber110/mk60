@@ -72,6 +72,10 @@ void UART_Input_Num(char *str,uint8 num);                     //输入数据
 void UART_DrawLine(char* buff,uint8 len);                    //在曲线控件中画线
 void UART_DrawLine_Arb(char* buff,char* str,uint8 len);      //在任意处画线
 
+//Wifi模块通信协议
+void Wifi_ServerInit(void);                                   //服务器初始化
+void Wifi_ClientInit(void);                                   //客户端初始化
+void Wifi_Send_Data(uint8 Id,uint8 Len,uint8 *str);            //发送len长度数据
 /********************************************************************/
 
 #endif /* __MK60_UART_H__ */
