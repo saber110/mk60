@@ -76,6 +76,10 @@ void UART_DrawLine_Arb(char* buff,char* str,uint8 len);      //在任意处画线
 void Wifi_ServerInit(void);                                   //服务器初始化
 void Wifi_ClientInit(void);                                   //客户端初始化
 void Wifi_Send_Data(uint8 Id,uint8 Len,uint8 *str);            //发送len长度数据
+
+void Wifi_Udp_ClientInit(void);                               //客户端udp初始化
+void Wifi_Udp_SendData(void);                                 //发送数据指令，进入透传
+void Wifi_Udp_Send_End(void);                                //退出透传
 /********************************************************************/
 
 #endif /* __MK60_UART_H__ */

@@ -687,7 +687,6 @@ void Wifi_ClientInit(void)
   DELAY_MS(10);  
 }
 
-
 /*!
  *  @brief      发送len长度的数据
  *  @param      Id        连接的id号
@@ -701,4 +700,42 @@ void Wifi_Send_Data(uint8 Id,uint8 Len,uint8 *str)
   uart_putchar(UART4,0x0a);
   DELAY_MS(1);
   uart_putstr(UART4,str);   //数据达到len长度才可发送
+}
+
+/*!
+ *  @brief      客户端udp初始化
+*/
+void Wifi_Udp_ClientInit(void)
+{
+  printf("AT+CIPMUX=0");
+  uart_putchar(UART4,0x0d); 
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10);
+  printf("AT+CIPSTART=\"UDP\",\"255.255.255.255\",8080,8080,0");
+  uart_putchar(UART4,0x0d);
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10);
+  printf("AT+CIPMODE=1");
+  uart_putchar(UART4,0x0d);
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10);
+}
+
+/*!
+ *  @brief      发送数据指令，进入透传模式
+*/
+void Wifi_Udp_SendData(void)
+{
+  printf("AT+CIPSEND");
+  uart_putchar(UART4,0x0d); 
+  uart_putchar(UART4,0x0a);
+  DELAY_MS(10); 
+}
+
+/*!
+ *  @brief      退出透传模式
+*/
+void Wifi_Udp_Send_End(void)
+{
+  printf("+++");
 }
