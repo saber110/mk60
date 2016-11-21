@@ -37,7 +37,30 @@ uint32 var5, var6;
  *  @since      v5.0
  *  @note       山外 无线调试 测试实验
  */
-void  main(void)
+uint32 number  = 0;
+void main()
+{
+  gpio_init(PTD15,GPO,LOW);
+  gpio_init(PTC0,GPO,HIGH);
+  Oled_Menu_init();
+  ftm_pwm_init(FTM0,FTM_CH0,10*1000,5000);
+  ftm_pwm_init(FTM0,FTM_CH1,10*1000,0);
+  ftm_pwm_init(FTM0,FTM_CH2,10*1000,5000);
+  ftm_pwm_init(FTM0,FTM_CH3,10*1000,0);
+   
+  while(1)
+  {
+    float num[7] ={10.0,20.0,15.0,15.5,12.2,16.0,12.0};
+    Display_Page1(num);
+   
+    
+    ftm_pwm_duty(FTM0,FTM_CH0,2500);
+    ftm_pwm_duty(FTM0,FTM_CH1,0);
+    ftm_pwm_duty(FTM0,FTM_CH2,2500);
+    ftm_pwm_duty(FTM0,FTM_CH3,0);
+  }
+}
+void  main1(void)
 {
     Site_t site     = {0, 0};                           //显示图像左上角位置
     Size_t imgsize  = {CAMERA_W, CAMERA_H};             //图像大小

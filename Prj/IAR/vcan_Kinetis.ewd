@@ -2735,7 +2735,7 @@
         </option>
         <option>
           <name>MemFile</name>
-          <state>$TOOLKIT_DIR$\CONFIG\debugger\Freescale\iok60xxxx.ddf</state>
+          <state>$TOOLKIT_DIR$\CONFIG\debugger\Freescale\MK60DN512Zxxx10.ddf</state>
         </option>
         <option>
           <name>RunToEnable</name>
@@ -2779,7 +2779,7 @@
         </option>
         <option>
           <name>OCLastSavedByProductVersion</name>
-          <state>6.30.1.53141</state>
+          <state>7.10.1.6733</state>
         </option>
         <option>
           <name>OCDownloadAttachToProgram</name>
@@ -2807,7 +2807,7 @@
         </option>
         <option>
           <name>FlashLoadersV3</name>
-          <state>$TOOLKIT_DIR$\config\flashloader\Freescale\FlashK60Xxxx.board</state>
+          <state>$TOOLKIT_DIR$\config\flashloader\Freescale\FlashK60Dxxx128K.board</state>
         </option>
         <option>
           <name>OCImagesSuppressCheck1</name>
