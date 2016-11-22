@@ -45,6 +45,8 @@ void OLED_xiaoshu(uint8 x,uint8 y,float shu);//显示小数（含负数，小数点后3位）
 void Oled_Menu_init(void);    //OLED菜单初始化
 void Display_Page1(float *num);     //显示第一页
 void Display_Page2(float *num);     //显示第二页
+void Display_Jinzhi1(float* num);   //显示进制第一页
+void Display_Jinzhi2(float* num);    //显示进制第二页
 void Menu_Change_Data(float* num,float* Jinzhi);   //设定坐标，更改数据
 float Set_jinzhi(float num);  //更改进制
 void OLED_WRDATA_Yinyang(uint8 dat,uint8 type);// 实现正反码写入一字节数据

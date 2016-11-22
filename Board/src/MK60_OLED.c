@@ -859,6 +859,36 @@ void Display_Page2(float* num)   //显示第二页
     OLED_xiaoshu(75,3,num[9]);
 }
 
+void Display_Jinzhi1(float* num)   //显示进制第一页
+{
+    OLED_6x8(30,0,"Jin Zhi");
+    OLED_6x8(0,1,"distance_p");
+    OLED_6x8(0,2,"distance_I");
+    OLED_6x8(0,3,"distance_D");
+    OLED_6x8(0,4,"distance");
+    OLED_6x8(0,5,"motor_P");
+    OLED_6x8(0,6,"motor_I");
+    OLED_6x8(0,7,"motor_D");
+    OLED_xiaoshu(75,1,num[0]);
+    OLED_xiaoshu(75,2,num[1]);
+    OLED_xiaoshu(75,3,num[2]);
+    OLED_xiaoshu(75,4,num[3]);
+    OLED_xiaoshu(75,5,num[4]);
+    OLED_xiaoshu(75,6,num[5]);
+    OLED_xiaoshu(75,7,num[6]);
+}
+
+void Display_Jinzhi2(float* num)   //显示进制第二页
+{
+    OLED_6x8(30,0,"Jin Zhi");
+    OLED_6x8(0,1,"test_P");
+    OLED_6x8(0,2,"test_I");
+    OLED_6x8(0,3,"test_D");
+    OLED_xiaoshu(75,1,num[7]);
+    OLED_xiaoshu(75,2,num[8]);
+    OLED_xiaoshu(75,3,num[9]);
+}
+
 float Set_jinzhi(float num)   //更改进制
 {
  if(num<0)

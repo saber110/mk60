@@ -772,7 +772,7 @@ void SD_Input_Data(char * num,uint8 f_name[],uint8 path_name[]) //向sd卡写数据
  */
 
 
-void SD_Read_Data(uint8 f_name[],uint8 path_name[],uint8 Id,uint8 num)           //向sd卡读数据
+void SD_Read_Data(uint8 f_name[],uint8 path_name[],uint8 Id,uint8 num)           //向sd卡写数据
     {
     FIL     fdst;   //文件
     FATFS   fs;     //文件系统
