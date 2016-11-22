@@ -217,7 +217,8 @@ extern ESDHC_IOCTL_ERR_e    SDHC_ioctl(ESDHC_IOCTL_CMD_e  cmd, void *param_ptr);
 extern void                 SDHC_set_baudrate(uint32 baudrate);                 // SDHC波特率配置
 extern uint32               SDHC_cmd (pESDHC_CMD_t command);                    // SDHC发送cmd命令
 
-extern void SD_Input_Data(char * num,uint8 f_name[],uint8 path_name[]);
+extern void SD_Input_Data(char * num,uint8 f_name[],uint8 path_name[]);     //向sd卡写数据
+void SD_Read_Data(uint8 f_name[],uint8 path_name[],uint8 Id,uint8 num);       //向sd卡读数据
 
 
 #define SDHC_is_running()     (0 != (SDHC_PRSSTAT & (SDHC_PRSSTAT_RTA_MASK | SDHC_PRSSTAT_WTA_MASK | SDHC_PRSSTAT_DLA_MASK | SDHC_PRSSTAT_CDIHB_MASK | SDHC_PRSSTAT_CIHB_MASK)))
