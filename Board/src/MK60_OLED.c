@@ -888,10 +888,99 @@ return jinzhi;
 }
 
 
-void Menu_Change_Data(float* num)    //设定坐标，更改数据
+void Menu_Change_Data(float* num,float* Jinzhi)    //设定坐标，更改数据
 {
-  uint8 static y=1,flag=0,sign=0; //y表示纵坐标，flag判断确认开关是否按下，sign判断翻页
-  
+  uint8 static y=1,flag=0,sign=0,mark=0; //y表示纵坐标，flag判断确认开关是否按下，sign判断翻页,mark判断是否更改进制
+    if(key_check(KEY_B) ==  KEY_DOWN)
+    {
+      mark=~mark;
+      if(mark)
+      {
+      Display_Jinzhi1(Jinzhi);
+      }
+      if(!mark)
+      {
+      Display_Page1(num);
+      }
+    }
+if(mark)
+{
+     if(key_check(KEY_U) ==  KEY_DOWN)
+       {
+        flag=0;
+        OLED_6x8(67,y," "); 
+        y++;
+        if(y==8)
+        {
+          OLED_Fill(0x00);
+          Display_Jinzhi2(Jinzhi);
+          sign=1;
+          y=1;
+        }
+        OLED_6x8(67,y,"*");
+       }
+      
+     if(key_check(KEY_D) ==  KEY_DOWN)
+     {
+       flag=0;
+       OLED_6x8(67,y," "); 
+        y-- ;  
+        if(y==0)
+        {
+          OLED_Fill(0x00);
+          Display_Jinzhi1(Jinzhi);
+          sign=0;
+          y=7;
+        }
+        OLED_6x8(67,y,"*");
+     }
+
+     if(key_check(KEY_A) ==  KEY_DOWN) //确认键
+     {
+       flag=1;
+     }
+    
+     if(key_check(KEY_R) ==  KEY_DOWN && flag==1)
+     {
+         if(sign==0)
+         {
+          Jinzhi[y-1]-=0.5;
+          DELAY_MS(100);     //延时
+         }
+         if(sign==1)
+         {
+          Jinzhi[y+6]-=0.5;
+          DELAY_MS(100);    
+         }
+       }
+    
+     if(key_check(KEY_L) ==  KEY_DOWN && flag==1)
+     {
+         if(sign==0)
+         {
+          Jinzhi[y-1]+=0.5;
+          DELAY_MS(100);
+         }
+         if(sign==1)
+         {
+          Jinzhi[y+6]+=0.5;
+           DELAY_MS(100); 
+         }
+       }
+    
+    if(sign==0)          //刷新
+    {
+        Display_Jinzhi1(Jinzhi);
+    }
+    if(sign==1)
+    {
+        Display_Page2(Jinzhi);
+    }
+}
+
+
+if(!mark)
+{      
     if(key_check(KEY_U) ==  KEY_DOWN)
        {
         flag=0;
@@ -914,7 +1003,7 @@ void Menu_Change_Data(float* num)    //设定坐标，更改数据
         y-- ;  
         if(y==0)
         {
-          OLED_Fill(0x00);          
+          OLED_Fill(0x00);
           Display_Page1(num);
           sign=0;
           y=7;
@@ -931,12 +1020,12 @@ void Menu_Change_Data(float* num)    //设定坐标，更改数据
      {
          if(sign==0)
          {
-          num[y-1]=num[y-1]-Set_jinzhi(num[y-1]);
+          num[y-1]=num[y-1]-Jinzhi[y-1];
           DELAY_MS(100);     //延时
          }
          if(sign==1)
          {
-          num[y+6]=num[y+6]-Set_jinzhi(num[y+6]);
+          num[y+6]=num[y+6]-Jinzhi[y+6];
           DELAY_MS(100);    
          }
        }
@@ -945,12 +1034,12 @@ void Menu_Change_Data(float* num)    //设定坐标，更改数据
      {
          if(sign==0)
          {
-          num[y-1]=num[y-1]+Set_jinzhi(num[y-1]);
+          num[y-1]=num[y-1]+Jinzhi[y-1];
           DELAY_MS(100);
          }
          if(sign==1)
          {
-          num[y+6]=num[y+6]+Set_jinzhi(num[y+6]);
+          num[y+6]=num[y+6]+Jinzhi[y+6];
            DELAY_MS(100); 
          }
        }
@@ -962,10 +1051,10 @@ void Menu_Change_Data(float* num)    //设定坐标，更改数据
     if(sign==1)
     {
         Display_Page2(num);
-    }  
+    }
+}    
     
  }
-
 void OLED_WRDATA_Yinyang(uint8 dat,uint8 type)   // 实现正反码写入一字节数据
 {
     uint8 i=0;
